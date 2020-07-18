@@ -44,3 +44,4 @@ de=dth;
 s=c*e+de;
 
 sys=J*(-c*dth-1/J*(k*s+xite*sign(s)));      %signÎª·ûºÅº¯Êý
+%sys=J*(-c*dth-1/J*(k*s+xite*s));
