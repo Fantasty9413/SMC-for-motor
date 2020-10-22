@@ -27,6 +27,7 @@ ts  = [0 0];
 
 function sys=mdlDerivatives(t,x,u)
 J=2;
+ft = e^(-t)*sin(t);
 dt=sin(t);
 ut=u(1);
 
