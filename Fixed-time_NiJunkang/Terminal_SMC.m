@@ -46,11 +46,12 @@ p1 = 5;
 q1 = 9;
 p2 = 5;
 q2 = 9;
-h = 1;
+h = 100;
 
 y1 = u(1);
 y2 = u(2);
 
-s = y2 + alpha1 * y1^(1/2 + m1/(2*n1) + (m1/(2*n1)-1/2)*sign(abs(y1)-1)) + beta1 * y1^(p1/q1);
+s = y2 + alpha1 * abs(y1)^(1/2 + m1/(2*n1) + (m1/(2*n1)-1/2)*sign(abs(y1)-1))*sign(y1) + beta1 * abs(y1)^(p1/q1)*sign(y1);
 
-sys = -1/g * (f + alpha1*(1/2 + m1/(2*n1) + (m1/(2*n1)-1/2)*sign(abs(y1)-1))*y1^(1/2 + m1/(2*n1) + (m1/(2*n1)-1/2)*sign(abs(y1)-1)-1)*y2 + sat(beta1*p1/q1 * y1^(p1/q1-1)*y2, h) + alpha2 * s^(1/2 + m2/(2*n2) + (m2/(2*n2)-1/2)*sign(abs(s)-1)) + beta2*s^(p2/q2));
+% sys = -1/g * (f + alpha1*(1/2 + m1/(2*n1) + (m1/(2*n1)-1/2)*sign(abs(y1)-1))*y1^(1/2 + m1/(2*n1) + (m1/(2*n1)-1/2)*sign(abs(y1)-1)-1)*y2 + sat(beta1*p1/q1 * y1^(p1/q1-1)*y2, h) + alpha2 * s^(1/2 + m2/(2*n2) + (m2/(2*n2)-1/2)*sign(abs(s)-1)) + beta2*s^(p2/q2));
+sys = -1/g * (f + alpha1*(1/2 + m1/(2*n1) + (m1/(2*n1)-1/2)*sign(abs(y1)-1))*abs(y1)^(1/2 + m1/(2*n1) + (m1/(2*n1)-1/2)*sign(abs(y1)-1)-1)*sign(y1)*y2 + sat(beta1*p1/q1 * abs(y1)^(p1/q1-1)*sign(y1) * y2, h) + alpha2 * abs(s)^(1/2 + m2/(2*n2) + (m2/(2*n2)-1/2)*sign(abs(s)-1))*sign(s) + beta2*abs(s)^(p2/q2)*sign(s));
