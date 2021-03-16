@@ -34,9 +34,9 @@ J = 2;
 f = 0;
 g = 1/J;
 
-alpha1 = 10;
-beta1 = 5;
-alpha2 = 10;
+alpha1 = 5;%10;
+beta1 = 10;%5;
+alpha2 = 5;%20;%10;
 beta2 = 5;
 m1 = 9;
 n1 = 5;
