@@ -17,3 +17,7 @@ created a smc(sliding mode control)  controller for a motor (for smc learning)
 
 文件*Stabilization*为镇定问题的仿真，文件*Trajectory*为跟踪问题的仿真。
 
+## 5.Predefined-time_Yanwen(03.31)
+
+参考[Yanwen的文章](https://ieeexplore.ieee.org/document/9386149)，设计ing，敬请期待
+
