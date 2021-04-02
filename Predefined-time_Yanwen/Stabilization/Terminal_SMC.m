@@ -31,7 +31,6 @@ sys=[];
 
 function sys=mdlOutputs(t,x,u)
 J = 2;
-g = 1/J;
 T_c = 1;
 
 m1 = 1/3;
@@ -40,6 +39,6 @@ m2 = 1/3;
 x1 = u(1);
 x2 = u(2);
 
-s = x2 + 1/T_c * exp(abs(x1)^m1) / (m1*abs(x1)^(m1-1));
+s = x2 + 1/T_c * exp(abs(x1)^m1) / (m1*abs(x1)^(m1-1))*sign(x1);
 
-sys = -J/T_c * ((exp(abs(x1)^m1)*m1^2*abs(x1)^(2*m1) - exp(abs(x1)^m1)*m1*(m1-1)*abs(x1)^m1)*x2/(m1^2*abs(x1)^(2*m1)) + exp(abs(s)^m2)/(m2*abs(s)^(m2-1)));
+sys = -J/T_c * ((exp(abs(x1)^m1)*m1^2*abs(x1)^(2*m1-2) - exp(abs(x1)^m1)*m1*(m1-1)*abs(x1)^(m1-2))*x2/(m1^2*abs(x1)^(2*m1-2)) + sign(s)*exp(abs(s)^m2)/(m2*abs(s)^(m2-1)));
