@@ -22,7 +22,7 @@ sizes.DirFeedthrough = 0;
 sizes.NumSampleTimes = 1;
 sys = simsizes(sizes);
 % x0  = [-0.15 -0.15];
-x0  = [1 0];
+x0  = [1 1];
 str = [];
 ts  = [0 0];
 

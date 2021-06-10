@@ -1,11 +1,11 @@
-function [sys,x0,str,ts] = spacemodel(t,x,u,flag,c)
+function [sys,x0,str,ts] = spacemodel(t,x,u,flag,c,xite)
 switch flag,
 case 0,
     [sys,x0,str,ts]=mdlInitializeSizes;
 case 1,
     sys=mdlDerivatives(t,x,u);
 case 3,
-    sys=mdlOutputs(t,x,u,c);
+    sys=mdlOutputs(t,x,u,c,xite);
 case {2,4,9}
     sys=[];
 otherwise
@@ -28,12 +28,12 @@ ts  = [];
 function sys=mdlDerivatives(t,x,u)
 sys=[];
 
-function sys=mdlOutputs(t,x,u,c)
-% c=15;
+function sys=mdlOutputs(t,x,u,c,xite)
+% c=5;
 % c=10;
 xite=5;
-% k=10;
 k=10;
+% k=10;
 b=133;
 
 thd=u(1);
@@ -47,7 +47,7 @@ e=thd-th;
 de=dthd-dth;
 s=c*e+de;
 
-S=1;
+S=2;
 if S==1
    ds=-xite*sign(s); 
 elseif S==2
