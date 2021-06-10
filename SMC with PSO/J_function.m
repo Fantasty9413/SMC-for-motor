@@ -1,15 +1,18 @@
-function [ output ] = J_function( input )
+function [ output ] = J_function( parameter1, parameter2 )
 %UNTITLED3 此处显示有关此函数的摘要
-%   此处显示详细说明   
+%   此处显示详细说明  
+%   parameter1 = c
+%   parameter2 = k
 
-    parameter = input;
-    N = length(parameter);        %并行运算的数量
+    [M,N] = size(parameter1);        %并行运算的数量
 
 %% 定义Simulink模型批量运行
     model = 'motor';
-    for i = 1:1:N
+    for i = 1:1:M
         in(i) = Simulink.SimulationInput(model);
-        in(i) = in(i).setVariable('c', parameter(i));
+        in(i) = in(i).setVariable('c', parameter1(i,1));
+        in(i) = in(i).setVariable('xite', parameter2(i,1));
+%         in(i) = in(i).setVariable('k', parameter2(i,1));
     end
     in = in.setModelParameter('AbsTol', '1e-3', ...
                           'SimulationMode', 'accelerator', ...
@@ -22,14 +25,15 @@ simOut = parsim(in, 'ShowSimulationManager', 'off');
 %% 输出代价函数值
 e = [];
 ut = []
-for i = 1:1:N
+for i = 1:1:M
     e(i,:) = simOut(i).e';
     ut(i,:) = simOut(i).ut';
 end
                       
 %     J = sum(abs(e(:,1))) + sum(abs(ut(:,1)));
 %     J = sum(abs(e),2);
-    J = sum(abs(e),2) + 0.1*sum(abs(ut),2);
+%     J = sum(abs(e),2) + 0.1*sum(abs(ut),2);
+    J = sum(abs(e),2)*0.2 + sum(abs(ut),2);
     output = J;
 
 end
