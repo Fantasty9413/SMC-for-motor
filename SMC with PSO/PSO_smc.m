@@ -1,9 +1,12 @@
-%{
-程序功能：
-1、粒子群算法求解函数的最优值
-2、参考链接：https://blog.csdn.net/qq_32515081/article/details/79793549
+% ———————————————————————————————————————
+% -*- coding: utf-8 -*-
+% @Time    : 2021-06-11
+% @Author  : Fantasty9413
+% @FileName: PSO_smc.m
+% @Software: Matlab2020b
+% @Github  : https://github.com/Fantasty9413
+% ———————————————————————————————————————
 
-%}
 clc
 clear
 close
@@ -39,6 +42,11 @@ figure
 % hold on
 scatter3(x(:,1),x(:,2),f(x(:,1),x(:,2)),'ro')       %种群初始位置
 title('初始状态图');
+figure
+plot(x(:,1),x(:,2),'ro')
+axis([0,limit(1,2),0,limit(2,2)])
+grid on
+title('粒子群位置分布--初态');
 
 %% 3.迭代更新
 figure
@@ -80,6 +88,12 @@ while iter <= ger
     iter = iter+1;
 end
 
+%% 4.绘制结果
+figure
+plot(x(:,1),x(:,2),'ro')
+axis([0,limit(1,2),0,limit(2,2)])
+grid on
+title('粒子群位置分布--末态');
 figure
 plot(record);
 title('收敛过程')
@@ -90,6 +104,8 @@ disp(['最小值：',num2str(fym)]);
 disp(['变量取值：',num2str(ym)]);
 
 toc
+
+%% 附录其他函数
 
 function [] = pso_plot_2(x,f)
     [X1,X2] = meshgrid(x(:,1),x(:,2));
