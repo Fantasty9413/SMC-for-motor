@@ -21,3 +21,15 @@ created a smc(sliding mode control)  controller for a motor (for smc learning)
 
 参考[Yanwen的文章](https://ieeexplore.ieee.org/document/9386149)，设计预定义时间控制器，收敛时间由参数$T_c$决定。并且文章还证明了当处于滑模面上时，选取适当的参数$m$，控制器是本质非奇异的，这也是本文的最大亮点之一。具体理论可以参考[作者的另一篇文章](https://arxiv.org/abs/2010.00449)。
 
+## 6.SMC with PSO（06.11）
+
+基于*chap2_2*中的控制系统，利用PSO（Particle Swarm Optimization，粒子群算法），寻找到使得当前系统能量消耗和跟踪误差最小的一组控制器参数，从而实现对控制器和系统的优化。
+
+详细内容与具体推导过程见文件中的*Readme.md*。
+
+## 7.Backstepping with PSO（06.16）
+
+类似于*SMC with PSO*中的工作，不同点在于将其中的控制器由滑模控制器换成了Backstepping控制器。
+
+详细内容与具体推导过程见文件中的*Readme.md*。
+
