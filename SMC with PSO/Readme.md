@@ -1,4 +1,4 @@
-# 电子信息导论作业
+# PSO优化滑模控制器参数
 
 ## 1.粒子群算法
 
@@ -70,7 +70,7 @@ $$
 
 ​	在simulink中搭建相应的仿真模型如下：
 
-<img src="F:\课程\电子信息导论\figure\simulink模型.png" alt="simulink仿真模型" style="zoom: 67%;" />
+<img src="F:\课程\电子信息导论\figure\smc with pso\simulink模型.png" alt="simulink仿真模型" style="zoom: 67%;" />
 
 ​	部分重要参数选取如下：
 
@@ -84,10 +84,11 @@ $$
 ​	仿真结果见下图，可见系统输出在$t = 0.568s$时跟踪上期望输入。
 
 <div align = center>
-    <img src = "F:\课程\电子信息导论\figure\theta.jpg" alt="角度跟踪曲线" style="zoom: 67%;" />
-    <img src = "F:\课程\电子信息导论\figure\ut.jpg" alt="控制器输出" style="zoom: 65%;" />
+    <img src = "F:\课程\电子信息导论\figure\smc with pso\theta.jpg" alt="角度跟踪曲线" style="zoom: 67%;" />
+    <img src = "F:\课程\电子信息导论\figure\smc with pso\ut.jpg" alt="控制器输出" style="zoom: 65%;" />
     <br>(a). 角度跟踪曲线 (b). 控制器输出</br>
 </div>
+
 
 
 
@@ -112,7 +113,7 @@ $$
 
 ​	由于数值计算具有离散型与有限性，这与上述目标函数相悖，因此在实际实验与计算时，将目标函数的无限积分更改为有限累加，更改后的目标函数如下：
 $$
-J = \sum _{i=start} ^{i=end} (\space |e(i)| * T_{step} \space + \space |ut(i)| * T_{step}  \space)
+J = \sum _{i=start} ^{i=end} (a\space |e(i)| * T_{step} \space + b \space |ut(i)| * T_{step}  \space)
 $$
 ​	其中$T_{step}$为仿真步长，本次实验统一使用固定步长仿真，取$T_{step}=0.001s$。
 
@@ -121,23 +122,25 @@ $$
 ​	以下为粒子群位置分布图，其中左图为粒子群初始时的位置，其满足随机分布；经过迭代后，得到粒子群末态分布位置图，粒子基本分布与最优参数解$c=2.2007,\epsilon=8.8920$的附近，此时目标函数取最小值$J=1.1980$。
 
 <div align=center>
-	<img src="F:\课程\电子信息导论\figure\粒子群位置分布初态.jpg" alt="粒子群位置分布初态" style="zoom:67%;" />
-	<img src="F:\课程\电子信息导论\figure\粒子群位置分布末态.jpg" alt="粒子群位置分布末态" style="zoom:67%;" />
+	<img src="F:\课程\电子信息导论\figure\smc with pso\粒子群位置分布初态.jpg" alt="粒子群位置分布初态" style="zoom:67%;" />
+	<img src="F:\课程\电子信息导论\figure\smc with pso\粒子群位置分布末态.jpg" alt="粒子群位置分布末态" style="zoom:67%;" />
     <br>(a).粒子初态分布 (b).粒子末态分布</br>
 </div>
+
 
 ​	再统计历代粒子最优解可得进化过程曲线，如下图。并且发现当迭代至$N=10$代时，即可取得最优值。
 
 <div align=center>
-	<img src="F:\课程\电子信息导论\figure\收敛过程.jpg" alt="收敛过程" style="zoom:67%;" />
+	<img src="F:\课程\电子信息导论\figure\smc with pso\收敛过程.jpg" alt="收敛过程" style="zoom:67%;" />
     <br>收敛过程</br>
 </div>
 
 
 
+
 ## 附录
 
-### [A]控制器设计与稳定性证明
+### [A]滑模控制器设计与稳定性证明
 
 ​	已知系统跟踪误差为$e(t) = \theta_{d} - \theta$，系统跟踪误差的微分为$\dot e = \dot \theta_{d} - \dot \theta$，对$s=ce+\dot e$取微分得
 $$
@@ -162,5 +165,5 @@ $$
 $$
 \dot V \leqq -2k V  \space \Rightarrow \space V(t) \leq e^{-2k(t-t_{0})} V(t_{0})
 $$
-​	证明$V(t)$以指数形式收敛至0，系统稳定。
+​	证明$V(t)$以指数形式收敛至0，证得系统稳定。
 
