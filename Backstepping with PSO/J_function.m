@@ -1,8 +1,8 @@
 % ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
 % -*- coding: utf-8 -*-
-% @Time    : 2021-06-11
+% @Time    : 2021-06-16
 % @Author  : Fantasty9413
-% @FileName: PSO_smc.m
+% @FileName: J_function.m
 % @Software: Matlab2020b
 % @Github  : https://github.com/Fantasty9413
 % ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
